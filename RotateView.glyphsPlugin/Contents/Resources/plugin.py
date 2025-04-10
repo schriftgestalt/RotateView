@@ -114,10 +114,9 @@ class RotateView(GeneralPlugin):
 		if Glyphs.buildNumber >= 3320:
 			from GlyphsApp.UI import MenuItem
 			newMenuItem = MenuItem(self.name, action=self.showWindow_, target=self)
-		elif Glyphs.versionNumber >= 3.3:
-			newMenuItem = NSMenuItem(self.name, callback=self.showWindow_, target=self)
 		else:
-			newMenuItem = NSMenuItem(self.name, self.showWindow_)
+			newMenuItem = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_(self.name, self.showWindow_, "")
+			newMenuItem.setTarget_(self)
 		Glyphs.menu[WINDOW_MENU].append(newMenuItem)
 
 	## creates Vanilla Window
